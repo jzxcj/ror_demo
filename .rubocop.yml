@@ -1,3 +1,9 @@
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Lint/IneffectiveAccessModifier:
+  Enabled: false  
+
 Style/Documentation:
   Enabled: false
 
@@ -8,10 +14,16 @@ Layout/AlignHash:
   EnforcedColonStyle: table
 
 Metrics/LineLength:
-  Max: 120
+  Max: 180
 
 Metrics/BlockLength:
-  ExcludedMethods: ['describe', 'context']  
+  ExcludedMethods: ['describe', 'context']
+  Exclude:
+    - 'db/schema.rb'
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'  
 
 Style/MixinUsage:
   Exclude:

@@ -16,12 +16,11 @@
 #
 default: &default
   adapter: postgresql
-  username: ror_test
-  password: ror_test_password
+  username: postgres
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: 150
 
 development:
   <<: *default
