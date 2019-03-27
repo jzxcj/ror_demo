@@ -20,11 +20,27 @@ Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
   Exclude:
     - 'db/schema.rb'
-
-Lint/AmbiguousBlockAssociation:
+Metrics/AbcSize:
   Exclude:
     - 'spec/**/*'  
-
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/controllers/users/*'  
 Style/MixinUsage:
   Exclude:
     - 'bin/*'
+Style/StringLiterals:
+  Exclude:
+    - 'db/schema.rb'
+Style/NumericLiterals:
+  Exclude:
+    - 'db/schema.rb'
+Layout/EmptyLinesAroundBlockBody:
+  Exclude:
+    - 'db/schema.rb'
+Style/WordArray:
+  Exclude:
+    - 'db/schema.rb'

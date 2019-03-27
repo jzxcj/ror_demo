@@ -10,45 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_190_326_074_405) do
+ActiveRecord::Schema.define(version: 2019_03_26_074405) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'posts', force: :cascade do |t|
-    t.cidr 'ip'
-    t.string 'title'
-    t.text 'body'
-    t.float 'avg_rating', default: 0.0
-    t.bigint 'user_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.integer 'ratings_count', default: 0
-    t.index %w[avg_rating created_at], name: 'index_posts_on_avg_rating_and_created_at', order: :desc
-    t.index ['user_id'], name: 'index_posts_on_user_id'
+  create_table "posts", force: :cascade do |t|
+    t.cidr "ip"
+    t.string "title"
+    t.text "body"
+    t.float "avg_rating", default: 0.0
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "ratings_count", default: 0
+    t.index ["avg_rating", "created_at"], name: "index_posts_on_avg_rating_and_created_at", order: :desc
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table 'ratings', force: :cascade do |t|
-    t.integer 'rate'
-    t.bigint 'post_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['post_id'], name: 'index_ratings_on_post_id'
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rate"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_ratings_on_post_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'login'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['login'], name: 'index_users_on_login', unique: true
+  create_table "users", force: :cascade do |t|
+    t.string "login"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["login"], name: "index_users_on_login", unique: true
   end
 
-  create_table 'visits', force: :cascade do |t|
-    t.cidr 'ip'
-    t.string 'logins', array: true
-    t.index 'array_length(logins, 1)', name: 'index_visits_on_array_length_logins_1'
-    t.index ['ip'], name: 'index_visits_on_ip', unique: true
+  create_table "visits", force: :cascade do |t|
+    t.cidr "ip"
+    t.string "logins", array: true
+    t.index "array_length(logins, 1)", name: "index_visits_on_array_length_logins_1"
+    t.index ["ip"], name: "index_visits_on_ip", unique: true
   end
 
-  add_foreign_key 'posts', 'users'
-  add_foreign_key 'ratings', 'posts'
+  add_foreign_key "posts", "users"
+  add_foreign_key "ratings", "posts"
 end
